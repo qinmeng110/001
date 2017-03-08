@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="sheji.css">
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/gaijin.js"></script>
+    <style>
+        #scroll
+        {
+            width:100%;
+            height:100%;
+            background-color:white;
+            position:absolute;
+            top:0;
+            border-bottom:1px solid blue;
+        }
+        #scroll ul
+        {
+            /*position: absolute;*/
+            /*top:0;*/
+            /*left: 0;*/
+            position: relative;
+            margin-top:0px ;
+            height:400px;
+            list-style:none;
+        }
+        #scroll ul li
+        {
+            /*position: absolute;*/
+            width:1220px;
+            height:400px;
+            /*top:0 ;*/
+            margin-left:-40px;
+            padding:0px;
+            display:none;
+        }
+    </style>
+    <script type="text/javascript">
+        /*轮播*/
+        $(function(){
+            var i=0;
+            var len=$("#scroll ul li").length-1;
+            $(".subl").click(function(){
+                if(i==len){
+                    i=-1;
+                }
+                i++;
+                $("#scroll ul li").eq(i).fadeIn().siblings().hide();
+            });
+//到这里分开！上面的是上一张点击的效果代码，下面的是下一张点击的效果代码．
+            $(".subr").click(function(){//获取类名的点击事件．
+                if(i==0){
+                    i=len+1;
+                }
+                i--;
+                $("#scroll ul li").eq(i).fadeIn().siblings().hide();
+            });
+        });
+        /*轮播*/
+    </script>
+</head>
+<body>
+<div id="page">
+    <div id="top">
+        <div id="logo">
+            <a href=""><img src="images/logo.png"></a>
+        </div>
+        <div id="search">
+        <span class="kecheng">
+            <span id="kecheng">课程</span>
+            <b id="antri"></b>
+        </span>
+            <div id="search-box">
+                <input type="text" value="搜索课程">
+            </div>
+            <input type="image" id="button" src="images/search2.png" style="height: 34px;width: 34px;float: right">
+        </div>
+        <div id="userinfo">
+            <ul>
+                <li style="margin-left: 10px;">
+                    <img src="images/small.jpg" style="border-radius: 15px;" onmouseover="show()" onmouseout="hidde()">
+                    <div>
+                        <!--<ul class="menu">
+                            <li class="text">
+                                <a class="s-fc2 j-nav-loginBtn" id="auto-id-1488959802728">游客，请登录...</a>
+                            </li>
+                            <li class="j-openImBox">
+                                <a class="self j-nav-loginBtn j-user-item" target="_blank" data-index="用户icon_私信" id="auto-id-1488959802729">私信</a>
+                            </li>
+                            <li class="j-addCourse" style="display:none">
+                                <a class="self" target="_blank">创建课程</a>
+                            </li>
+                            <li class="j-mngCourse" style="display:none">
+                                <a class="self" target="_self">课程管理</a>
+                            </li>
+                            <li class="j-mngCourse" style="display:none">
+                                <a class="self" target="_self">课程管理</a>
+                            </li>
+                            <li>
+                                <a href="/coupon" class="self j-user-item" data-index="用户icon_我的优惠券" id="auto-id-1488959802812">我的优惠劵<span class="exchange" data-index="用户icon_优惠券兑换">兑换</span></a>
+                            </li>
+                            <li>
+                                <a href="/order" class="self j-user-item" data-index="用户icon_我的订单" id="auto-id-1488959802813">我的订单</a>
+                            </li>
+                            <li class="j-yoctch" style="display:none">
+                                <a href="" class="self">设置老师信息</a>
+                            </li>
+                            <li>
+                                <a href="/about/aboutus.htm#/about?aboutType=8" class="reply j-user-item" data-index="用户icon_反馈意见" id="auto-id-1488959802814">反馈意见</a>
+                            </li>
+                            <li>
+                                <a href="/user/setting.htm" class="setting j-user-item" data-index="用户icon_设置" id="auto-id-1488959802815">设置</a>
+                            </li>
+                        </ul>-->
+                    </div>
+                </li>
+                <li><a href="http://study.163.com/member/login.htm?returnUrl=aHR0cDovL3N0dWR5LjE2My5jb20vbXk.">登录/注册</a></li>
+                <li><a href="http://study.163.com/member/login.htm?returnUrl=aHR0cDovL3N0dWR5LjE2My5jb20vY2FydC5odG0.">购物车</a></li>
+                <li><a href="http://study.163.com/member/login.htm?returnUrl=aHR0cDovL3N0dWR5LjE2My5jb20vbWVzc2FnZS9tc2dMaXN0Lmh0bQ..">消息</a></li>
+                <li><a href="http://study.163.com/member/login.htm?returnUrl=aHR0cDovL3N0dWR5LjE2My5jb20vbXk.">我的学习</a></li>
+            </ul>
+        </div>
+        <div id="face-menu" style="border: 1px solid green;width: 165px;height: 100px;display: none;">
+            <div id="arrr"></div>
+            <ul class="menu">
+                <li class="text">
+                    <a class="s-fc2 j-nav-loginBtn" id="auto-id-1488959802728">游客，请登录...</a>
+                </li>
+                <hr style="margin: 0 auto">
+                <li class="j-openImBox">
+                    <a class="self j-nav-loginBtn j-user-item" target="_blank" data-index="用户icon_私信" id="auto-id-1488959802729">私信</a>
+                </li>
+                <li class="j-addCourse" style="display:none">
+                    <a class="self" target="_blank">创建课程</a>
+                </li>
+                <li class="j-mngCourse" style="display:none">
+                    <a class="self" target="_self">课程管理</a>
+                </li>
+                <li class="j-mngCourse" style="display:none">
+                    <a class="self" target="_self">课程管理</a>
+                </li>
+                <li>
+                    <a href="/coupon" class="self j-user-item" data-index="用户icon_我的优惠券" id="auto-id-1488959802812">我的优惠劵<span class="exchange" data-index="用户icon_优惠券兑换">兑换</span></a>
+                </li>
+                <li>
+                    <a href="/order" class="self j-user-item" data-index="用户icon_我的订单" id="auto-id-1488959802813">我的订单</a>
+                </li>
+                <li class="j-yoctch" style="display:none">
+                    <a href="" class="self">设置老师信息</a>
+                </li>
+                <li>
+                    <a href="/about/aboutus.htm#/about?aboutType=8" class="reply j-user-item" data-index="用户icon_反馈意见" id="auto-id-1488959802814">反馈意见</a>
+                </li>
+                <li>
+                    <a href="/user/setting.htm" class="setting j-user-item" data-index="用户icon_设置" id="auto-id-1488959802815">设置</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="nav">
+        <div id="scroll">
+            <ul>
+                <li style="background:red; display: block"></li>
+                <li style="background:green;"></li>
+                <li style="background:gray;"></li>
+                <li style="background:orange;"></li>
+            </ul>
+            <!--<p class="subl">上一张<p/>-->
+            <!--<p class="subr">下一张<p/>-->
+            <p class="lbtn" id="j-lbtn" class="subl">上一张</p>
+            <p class="rbtn" id="j-rbtn" class="subr">下一张</p>
+        </div>
+        <div></div>
+        <div>
+            <div class="menu" id="menu">
+                <div class="items">
+                    <div class="item" id="item1">
+                        <div class="curbg"></div>
+                        <div class="inn">
+                            <p>
+                                <a data-index="编程开发_左侧类目框" target="_blank" href="/category/it" data-name="编程开发" class="f-f0 first">编程开发</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item j-item" id="item2">
+                        <div class="curbg"></div>
+                        <div class="inn">
+                            <p>
+                                <a data-index="办公效率_左侧类目框" target="_blank" href="/category/office-productivity" data-name="办公效率" class="f-f0 first">办公效率</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item j-item cur" id="item3">
+                        <div class="curbg"></div>
+                        <div class="inn">
+                            <p>
+                                <a data-index="产品和设计_左侧类目框" target="_blank" href="/category/design" data-name="产品和设计" class="f-f0 first">产品和设计</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item j-item" id="item4">
+                        <div class="curbg"></div>
+                        <div class="inn">
+                            <p>
+                                <a data-index="生活方式_左侧类目框" target="_blank" href="/category/lifestyle" data-name="生活方式" class="f-f0 first">生活方式</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item j-item" id="item5">
+                        <div class="curbg"></div>
+                        <div class="inn">
+                            <p>
+                                <a data-index="职业发展_左侧类目框" target="_blank" href="/category/occupation" data-name="职业发展" class="f-f0 first">职业发展</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item j-item last" id="item6">
+                        <div class="curbg"></div>
+                        <div class="inn">
+                            <p>
+                                <a data-index="市场营销_左侧类目框" target="_blank" href="/category/marketing" data-name="市场营销" class="f-f0 first">市场营销</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="box1">
+        <div class="m-micro" id="j-micro">
+            <div class="g-flow f-pr">
+                <div class="f-cb m-micro-wrap">
+                    <div class="cntwrap" id="j-cntwrap">
+                        <div class="cntlist" id="j-cntlist" style="margin-left: -735px;">
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/1001137001.htm" data-index="微专业点击" data-name="C++开发工程师_侯捷大师亲自教学" target="_blank">
+                                    <div class="imgbox f-icon icon-e62c f-fl"></div>
+                                    <div class="tit f-f0 f-thide">C++开发工程师</div>
+                                    <div class="tip f-f0 f-thide">侯捷大师亲自教学</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/1001170001.htm" data-index="微专业点击" data-name="新任管理者_源自中欧国际工商学院" target="_blank">
+                                    <div class="imgbox f-icon icon-e629 f-fl"></div>
+                                    <div class="tit f-f0 f-thide">新任管理者</div>
+                                    <div class="tip f-f0 f-thide">源自中欧国际工商学院</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/85003.htm" data-index="微专业点击" data-name="产品经理_网易亿级产品负责人亲授" target="_blank">
+                                    <div class="imgbox f-icon icon-e628 f-fl"></div>
+                                    <div class="tit f-f0 f-thide">产品经理</div>
+                                    <div class="tip f-f0 f-thide">网易亿级产品负责人亲授</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://study.163.com/topics/mysql_dba/" data-index="微专业点击" data-name="MySQL数据库工程师_网易一线DBA团队打造" target="_blank">
+                                    <div class="imgbox f-icon icon-e62f f-fl"></div>
+                                    <div class="tit f-f0 f-thide">MySQL数据库工程师</div>
+                                    <div class="tip f-f0 f-thide">网易一线DBA团队打造</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/1001168002.htm" data-index="微专业点击" data-name="Android开发工程师_4个月从入门到精通" target="_blank">
+                                    <div class="imgbox f-icon icon-e62b f-fl"></div>
+                                    <div class="tit f-f0 f-thide">Android开发工程师</div>
+                                    <div class="tip f-f0 f-thide">4个月从入门到精通</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/85001.htm" data-index="微专业点击" data-name="独立音乐制作人_最易懂的音乐制作课程" target="_blank">
+                                    <div class="imgbox f-icon icon-e900 f-fl"></div>
+                                    <div class="tit f-f0 f-thide">独立音乐制作人</div>
+                                    <div class="tip f-f0 f-thide">最易懂的音乐制作课程</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/1001168001.htm" data-index="微专业点击" data-name="iOS开发工程师_网易一线资深开发工程师亲授" target="_blank">
+                                    <div class="imgbox f-icon icon-e62e f-fl"></div>
+                                    <div class="tit f-f0 f-thide">iOS开发工程师</div>
+                                    <div class="tip f-f0 f-thide">网易一线资深开发工程师亲授</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/28001.htm" data-index="微专业点击" data-name="自由职业摄影师_培养一个能赚钱的爱好" target="_blank">
+                                    <div class="imgbox f-icon icon-e61a f-fl"></div>
+                                    <div class="tit f-f0 f-thide">自由职业摄影师</div>
+                                    <div class="tip f-f0 f-thide">培养一个能赚钱的爱好</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/1001127001.htm" data-index="微专业点击" data-name="产品运营_运营大咖强强联合" target="_blank">
+                                    <div class="imgbox f-icon icon-e913 f-fl"></div>
+                                    <div class="tit f-f0 f-thide">产品运营</div>
+                                    <div class="tip f-f0 f-thide">运营大咖强强联合</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/1001195002.htm" data-index="微专业点击" data-name="新媒体视频导演_让业余拍片儿的你变专业" target="_blank">
+                                    <div class="imgbox f-icon icon-e926 f-fl"></div>
+                                    <div class="tit f-f0 f-thide">新媒体视频导演</div>
+                                    <div class="tip f-f0 f-thide">让业余拍片儿的你变专业</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/1001180001.htm" data-index="微专业点击" data-name="Python Web开发工程师_快速上手的全栈训练营" target="_blank">
+                                    <div class="imgbox f-icon icon-e917 f-fl"></div>
+                                    <div class="tit f-f0 f-thide">Python Web开发工程师</div>
+                                    <div class="tip f-f0 f-thide">快速上手的全栈训练营</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/1001201003.htm" data-index="微专业点击" data-name="Java应用基础_浙大翁恺老师亲授" target="_blank">
+                                    <div class="imgbox f-icon icon-e901 f-fl"></div>
+                                    <div class="tit f-f0 f-thide">Java应用基础</div>
+                                    <div class="tip f-f0 f-thide">浙大翁恺老师亲授</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/1001113001.htm" data-index="微专业点击" data-name="UI设计师_网易UEDC首席设计师亲授" target="_blank">
+                                    <div class="imgbox f-icon icon-e912 f-fl"></div>
+                                    <div class="tit f-f0 f-thide">UI设计师</div>
+                                    <div class="tip f-f0 f-thide">网易UEDC首席设计师亲授</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://mooc.study.163.com/smartSpec/detail/1001122002.htm" data-index="微专业点击" data-name="测试工程师_打造最专业的测试人" target="_blank">
+                                    <div class="imgbox f-icon icon-e635 f-fl"></div>
+                                    <div class="tit f-f0 f-thide">测试工程师</div>
+                                    <div class="tip f-f0 f-thide">打造最专业的测试人</div>
+                                </a>
+                            </div>
+                            <div class="item f-fl">
+                                <a href="http://study.163.com/topics/java_web/" data-index="微专业点击" data-name="Java 开发工程师_浙大Java男神翁恺执教" target="_blank">
+                                    <div class="imgbox f-icon icon-e901 f-fl"></div>
+                                    <div class="tit f-f0 f-thide">Java 开发工程师</div>
+                                    <div class="tip f-f0 f-thide">浙大Java男神翁恺执教</div>
+                                </a>
+                            </div>
+                            <div class="larr f-pa" id="j-larr"></div>
+                            <div class="rarr f-pa" id="j-rarr"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="free">
+        <div id="f-logo" class="img">
+            <a href="http://study.163.com/courses#/?pt=0" target="_blank">
+            <img src="images/mfhk.png">
+            </a>
+        </div>
+        <div class="img">
+            <a href="http://study.163.com/course/introduction/1003162016.htm#/courseDetail" target="_blank">
+                <div class="pic f-pr">
+                    <img class="imgPic j-img" src="images/Linux.jpg" alt="Linux&nbsp;入门基础" id="auto-id-1488939246169">
+                </div>
+                <div class="tit">
+                    <div class="f-thide">Linux&nbsp;入门基础</div>
+                    <div class="orgName f-fs0 f-thide">Linux在线学习</div>
+                </div>
+            </a>
+        </div>
+        <div class="img">
+            <a href="http://study.163.com/course/introduction/1003162016.htm#/courseDetail" target="_blank">
+            <div class="pic f-pr">
+                <img class="imgPic j-img" src="images/sanzhisongshu.jpg" alt="Linux&nbsp;入门基础" id="auto-id-1488939246169">
+            </div>
+            <div class="tit">
+                <div class="f-thide">三只松鼠创始人聊创业秘诀</div>
+                <div class="orgName f-fs0 f-thide">淘宝大学</div>
+            </div>
+            </a>
+        </div>
+        <div class="img">
+            <a href="http://study.163.com/course/introduction/1003162016.htm#/courseDetail" target="_blank">
+            <div class="pic f-pr">
+                <img class="imgPic j-img" src="images/tuoyanzheng.jpg" alt="Linux&nbsp;入门基础" id="auto-id-1488939246169">
+            </div>
+            <div class="tit">
+                <div class="f-thide">如何克服拖延症！</div>
+                <div class="orgName f-fs0 f-thide">变色龙课堂</div>
+            </div>
+            </a>
+        </div>
+        <div class="img">
+            <a href="http://study.163.com/course/introduction/1003162016.htm#/courseDetail" target="_blank">
+            <div class="pic f-pr">
+                <img class="imgPic j-img" src="images/ppt.jpg" alt="Linux&nbsp;入门基础" id="auto-id-1488939246169">
+            </div>
+            <div class="tit">
+                <div class="f-thide">PPT从菜鸟到PPT高手实用教程</div>
+                <div class="orgName f-fs0 f-thide">灰色的风</div>
+            </div>
+            </a>
+        </div>
+    </div>
+    <div id="changxiao">
+        <div id="cx-top" class="box-top">
+            <h2>畅销好课</h2>
+            <a href="http://study.163.com/courses" target="_blank"><span>更多</span>
+                <span class="icn"></span>
+            </a>
+        </div>
+        <div id="cx-pic" class="pic1">
+            <div id="cx-content" class="content1">
+                <div id="cx-left" class="p-left1">
+                    <a href="http://study.163.com/course/introduction/1003047002.htm#/courseDetail" data-index="左边" data-name="邱晨教设计" target="_blank">
+                        <div class="x-zoomImg">
+                            <img class="j-llimg" id="auto-id-1488939246185" src="images/qiuchen.png" data-originsrc="http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://nos.netease.com/edu-image/4AAA92EF6E28CEBF6402482735E6534B.jpg_225x466x1x95.png" width="225" height="466" alt="邱晨教设计">
+                        </div>
+                    </a>
+                </div>
+                <div id="cx-right" class="p-right1">
+                    <div id="cx-r1" class="right1">
+                        <a target="_blank" class="j-href wrap" data-href="/course/introduction/1003606088.htm" data-index="1" data-name="Excel商业图表模板大法">
+                        <div class="img">
+                            <a href="http://study.163.com/course/introduction/1003162016.htm#/courseDetail" target="_blank">
+                            <div class="pic f-pr">
+                                <img class="imgPic j-img" src="images/excel.jpg" data-originsrc="http://edu-image.nosdn.127.net/9bbe7fc4-a013-4c06-a2df-c8c756f65cff.jpg?imageView&amp;thumbnail=225y142&amp;quality=100" alt="Excel商业图表模板大法" id="auto-id-1488939246191">
+                            </div>
+                            <div class="tit">
+                                <div class="f-thide">Excel商业图表模板大法</div>
+                            </div>
+                            <div class="orgName f-fs0 f-thide">刘万祥ExcelPro</div>
+                            <div class="thumb">
+                                <div class="btn f-pr btn2">
+                                    <span class="normal f-fs0">¥ 120.00</span>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                    </a>
+                    </div>
+                    <div id="cx-r2" class="right1">
+                        <a target="_blank" class="j-href wrap" data-href="/course/introduction/1003606088.htm" data-index="1" data-name="Excel商业图表模板大法">
+                            <div class="img">
+                                <a href="http://study.163.com/course/introduction/1003162016.htm#/courseDetail" target="_blank">
+                                <div class="pic f-pr">
+                                    <img class="imgPic j-img" src="images/pptshuju.jpg" data-originsrc="http://edu-image.nosdn.127.net/9bbe7fc4-a013-4c06-a2df-c8c756f65cff.jpg?imageView&amp;thumbnail=225y142&amp;quality=100" alt="Excel商业图表模板大法" id="auto-id-1488939246191">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide">PPT数据分析报告实战</div>
+                                </div>
+                                <div class="orgName f-fs0 f-thide">小蚊子数据分析</div>
+                                <div class="thumb">
+                                    <div class="btn f-pr btn2">
+                                        <span class="normal f-fs0">¥ 129.00</span>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r3" class="right1">
+                        <a target="_blank" class="j-href wrap" data-href="/course/introduction/1003606088.htm" data-index="1" data-name="Excel商业图表模板大法">
+                            <div class="img">
+                                <a href="http://study.163.com/course/introduction/1003162016.htm#/courseDetail" target="_blank">
+                                <div class="pic f-pr">
+                                    <img class="imgPic j-img" src="images/sheyin.jpg" data-originsrc="http://edu-image.nosdn.127.net/9bbe7fc4-a013-4c06-a2df-c8c756f65cff.jpg?imageView&amp;thumbnail=225y142&amp;quality=100" alt="Excel商业图表模板大法" id="auto-id-1488939246191">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide">循序渐进学摄影（中级班）</div>
+                                </div>
+                                <div class="orgName f-fs0 f-thide">钟百迪摄影课堂</div>
+                                <div class="thumb">
+                                    <div class="btn f-pr btn2">
+                                        <span class="normal f-fs0">¥ 99.00</span>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r4" class="right1">
+                        <a target="_blank" class="j-href wrap" data-href="/course/introduction/1003606088.htm" data-index="1" data-name="Excel商业图表模板大法">
+                            <div class="img">
+                                <a href="http://study.163.com/course/introduction/1003162016.htm#/courseDetail" target="_blank">
+                                <div class="pic f-pr">
+                                    <img class="imgPic j-img" src="images/爬虫.jpg" data-originsrc="http://edu-image.nosdn.127.net/9bbe7fc4-a013-4c06-a2df-c8c756f65cff.jpg?imageView&amp;thumbnail=225y142&amp;quality=100" alt="Excel商业图表模板大法" id="auto-id-1488939246191">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide">四周实现爬虫网站</div>
+                                </div>
+                                <div class="orgName f-fs0 f-thide">麻瓜编程</div>
+                                <div class="thumb">
+                                    <div class="btn f-pr btn2">
+                                        <span class="normal f-fs0">¥ 518.00</span>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r5" class="right1">
+                        <a target="_blank" class="j-href wrap" data-href="/course/introduction/1003606088.htm" data-index="1" data-name="Excel商业图表模板大法">
+                            <div class="img">
+                                <a href="http://study.163.com/course/introduction/1003162016.htm#/courseDetail" target="_blank">
+                                <div class="pic f-pr">
+                                    <img class="imgPic j-img" src="images/pptdonghua.jpg" data-originsrc="http://edu-image.nosdn.127.net/9bbe7fc4-a013-4c06-a2df-c8c756f65cff.jpg?imageView&amp;thumbnail=225y142&amp;quality=100" alt="Excel商业图表模板大法" id="auto-id-1488939246191">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide">动画让你的PPT飞起来</div>
+                                </div>
+                                <div class="orgName f-fs0 f-thide">PPT研究所</div>
+                                <div class="thumb">
+                                    <div class="btn f-pr btn2">
+                                        <span class="normal f-fs0">¥ 79.00</span>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r6" class="right1">
+                        <a target="_blank" class="j-href wrap" data-href="/course/introduction/1003606088.htm" data-index="1" data-name="Excel商业图表模板大法">
+                            <div class="img">
+                                <a href="http://study.163.com/course/introduction/1003162016.htm#/courseDetail" target="_blank">
+                                <div class="pic f-pr">
+                                    <img class="imgPic j-img" src="images/shouhui.jpg" data-originsrc="http://edu-image.nosdn.127.net/9bbe7fc4-a013-4c06-a2df-c8c756f65cff.jpg?imageView&amp;thumbnail=225y142&amp;quality=100" alt="Excel商业图表模板大法" id="auto-id-1488939246191">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide">设计师学手绘~全修</div>
+                                </div>
+                                <div class="orgName f-fs0 f-thide">安思手绘</div>
+                                <div class="thumb">
+                                    <div class="btn f-pr btn2">
+                                        <span class="normal f-fs0">¥ 199.00</span>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="cx-sild" class="sild1"></div>
+        </div>
+    </div>
+    <div id="bangong">
+        <div id="bg-top" class="box-top">
+            <h2>办公效率</h2>
+            <a href="http://study.163.com/category/office-productivity" target="_blank"><span>更多</span>
+                <span class="icn"></span>
+            </a>
+        </div>
+        <div id="bg-pic" class="pic2">
+            <div id="bg-content" class="content2">
+                <!--<div id="bg-left" class="p-left"></div>-->
+                <div id="bg-right" class="p-right2">
+                    <div id="bg-r1" class="right2">
+                        <a href="http://study.163.com/series/61005.htm" target="_blank" data-index="470*184">
+                            <div class="x-zoomImg">
+                                <img class="j-custom-img" id="auto-id-1488939246241" src="images/bg1.png" data-originsrc="http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://nos.netease.com/edu-image/331FBE6CFB5660DBFD8AA0C1EEB93E03.png?imageView&amp;thumbnail=470y184&amp;quality=100_470x184x1x95.png" width="470" height="184" alt="世界500强企业级Office办公教程">
+                            </div>
+                        </a>
+                    </div>
+                    <div id="bg-r2" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003546013.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/bg2.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">OmniFocus for Mac
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">李长太</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="bg-r3" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003204033.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/bg3.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">数据图表高效制作
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">PPT研究所</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="bg-r4" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003453008.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/bg4.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">注龙大战PPT
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">十点课堂</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="bg-r5" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003453008.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/bg5.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">动画让你的PPT飞起来
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">PPT研究所</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="bg-r6" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003453008.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/bg6.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">Excel商业图表模板大发
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">刘万祥ExcelPro</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="bg-r7" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003453008.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/bg7.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">Excel企业级十大组合函数
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">上海职领网络科技有限公司</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="bg-sild" class="sild2"></div>
+        </div>
+    </div>
+    <div id="shichang">
+        <div id="sc-top" class="box-top">
+            <h2>市场营销</h2>
+            <a href="http://study.163.com/category/marketing" target="_blank"><span>更多</span>
+                <span class="icn"></span>
+            </a>
+        </div>
+        <div id="sc-pic" class="pic1">
+            <div id="sc-content" class="content1">
+                <div id="sc-left" class="p-left1">
+                    <a href="http://study.163.com/course/introduction/1003683028.htm" target="_blank" data-index="225*390">
+                        <div class="x-zoomImg">
+                            <img class="j-custom-img" id="auto-id-1488939246277" src="images/sc1.png" data-originsrc="http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://edu-image.nosdn.127.net/089a33ff-fae5-40ff-a5bc-1c8b4c13b1ea.jpg?imageView&amp;quality=100_225x390x1x95.png" width="225" height="390" alt="把产品用正确的方式卖出去">
+                        </div>
+                    </a>
+                </div>
+                <div id="sc-right" class="p-right1">
+                    <div id="sc-r1" class="right1">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003502003.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/sc2.jpg" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        销售就是搞定客户</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">枭咖学习进化机构</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="sc-r2" class="right1">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003502003.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/sc3.jpg" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        口碑营销</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">开课吧</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="sc-r3" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/991011.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/sc4.jpg" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        不忽悠的网络营销实战课</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">踏浪100张君</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="sc-r4" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/268003.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/sc5.jpg" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        轻松读书：读《定位》</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">学以思网络课堂</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="sc-r5" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1600011.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/sc6.jpg" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        互联网营销案例分析</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">WinnerSpace</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="sc-r6" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/224011.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/sc7.jpg" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        网络营销三大策略</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">前沿讲座频道</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="sc-sild" class="sild1"></div>
+        </div>
+    </div>
+    <div id="biancheng">
+        <div id="bc-top" class="box-top">
+            <h2>编程开发</h2>
+            <a href="http://study.163.com/category/programming-languages" target="_blank"><span>更多</span>
+                <span class="icn"></span>
+            </a>
+        </div>
+        <div id="bc-pic" class="pic2">
+            <div id="bc-content" class="content2">
+                <!--<div id="bg-left" class="p-left"></div>-->
+                <div id="bc-right" class="p-right2">
+                    <div id="bc-r1" class="right2">
+                        <a href="http://study.163.com/series/61005.htm" target="_blank" data-index="470*184">
+                        <div class="x-zoomImg">
+                            <img class="j-custom-img" id="auto-id-1488939246241" src="images/bc1.png" data-originsrc="http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://nos.netease.com/edu-image/331FBE6CFB5660DBFD8AA0C1EEB93E03.png?imageView&amp;thumbnail=470y184&amp;quality=100_470x184x1x95.png" width="470" height="184" alt="世界500强企业级Office办公教程">
+                        </div>
+                    </a>
+                    </div>
+                    <div id="bc-r2" class="right2">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003546013.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/bc2.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        面向对象程序设计C++
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">翁凯</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="bc-r3" class="right2">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003546013.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/bc3.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        如何制作数据分析师简历
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">小蚊子数据分析</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="bc-r4" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003572010.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/bc4.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        ASP.NET网站工程师
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">喜科堂互联网交易</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="bc-r5" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1002794001.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/bc5.png" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        Python实战|四周实现爬虫系统
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">麻瓜编程</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="bc-r6" class="right2">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003546013.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/bc6.png" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        Python&nbsp;实战计划：7天上线苹果官网
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">麻瓜编程</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="bc-r7" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1169005.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/bc7.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        Meta分析简明教程
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">SCI刀笔吏</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="bc-sild" class="sild2"></div>
+        </div>
+    </div>
+    <div id="chanpin">
+        <div id="cp-top" class="box-top">
+            <h2>产品和设计</h2>
+            <a href="http://study.163.com/category/design" target="_blank"><span>更多</span>
+                <span class="icn"></span>
+            </a>
+        </div>
+        <div id="cp-pic" class="pic1">
+            <div id="cp-content" class="content1">
+                <div id="cp-left" class="p-left1">
+                    <a href="http://study.163.com/course/introduction/1003683028.htm" target="_blank" data-index="225*390">
+                        <div class="x-zoomImg">
+                            <img class="j-custom-img" id="auto-id-1488939246277" src="images/cp1.png" data-originsrc="http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://edu-image.nosdn.127.net/089a33ff-fae5-40ff-a5bc-1c8b4c13b1ea.jpg?imageView&amp;quality=100_225x390x1x95.png" width="225" height="390" alt="把产品用正确的方式卖出去">
+                        </div>
+                    </a>
+                </div>
+                <div id="cp-right" class="p-right1">
+                    <div id="cp-r1" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003515011.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/cp2.jpg" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        SketchUp&nbsp;自学教程</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">设计软件通官方</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cp-r2" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003327020.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/cp3.png" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        Principle微交互设计</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">原型库</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cp-r3" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003047002.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/cp4.jpg" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        邱晨的设计急诊室</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">蜂巢设计</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cp-r4" class="right1">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003502003.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/cp5.jpg" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        《和文牛一起学PS》完整版</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">文牛</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cp-r5" class="right1">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003502003.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/cp6.jpg" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        AI教程超级合辑-illustrator教程</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">设计软件通官方</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cp-r6" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003342006.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/cp7.jpg" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        如何管理产品的版本和生命周期</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">三节课</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="cp-sild" class="sild1"></div>
+        </div>
+    </div>
+    <div id="zhiye">
+        <div id="zy-top" class="box-top">
+            <h2>职业发展</h2>
+            <a href="http://study.163.com/category/occupation" target="_blank"><span>更多</span>
+                <span class="icn"></span>
+            </a>
+        </div>
+        <div id="zy-pic" class="pic2">
+            <div id="zy-content" class="content2">
+                <!--<div id="bg-left" class="p-left"></div>-->
+                <div id="zy-right" class="p-right2">
+                    <div id="zy-r1" class="right2">
+                        <a href="http://study.163.com/series/61005.htm" target="_blank" data-index="470*184">
+                            <div class="x-zoomImg">
+                                <img class="j-custom-img" id="auto-id-1488939246241" src="images/zy1.png" data-originsrc="http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://nos.netease.com/edu-image/331FBE6CFB5660DBFD8AA0C1EEB93E03.png?imageView&amp;thumbnail=470y184&amp;quality=100_470x184x1x95.png" width="470" height="184" alt="世界500强企业级Office办公教程">
+                            </div>
+                        </a>
+                    </div>
+                    <div id="zy-r2" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/802003.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/zy2.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        NLP简快学习法
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">雷子|复制卓越</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="zy-r3" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/952001.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/zy3.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        如何做计划
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">学以思网络课堂</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="zy-r4" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/665012.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/zy4.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        200个案例教你如何拒绝
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">姑苏明月</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="zy-r5" class="right2"><a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1002876015.htm" data-index="225*142">
+                        <div class="img">
+                            <div class="pic f-pr">
+                                <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/zy5.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                            </div>
+                            <div class="tit">
+                                <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                    求职简单学
+                                </div>
+                            </div>
+                            <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                <div class="orgName f-fs0 f-thide">Loy888</div>
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+                    <div id="zy-r6" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003271002.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/zy6.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        职场加速器
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">八运会</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="zy-r7" class="right2">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003546013.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/zy7.jpg" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        轻松手绘：用简笔画提升你的竞争力
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">幻方秋叶PPT</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="zy-sild" class="sild2"></div>
+        </div>
+    </div>
+    <div id="shenghuo">
+        <div id="cx-top" class="box-top">
+            <h2>生活方式</h2>
+            <a href="http://study.163.com/category/lifestyle" target="_blank"><span>更多</span>
+                <span class="icn"></span>
+            </a>
+        </div>
+        <div id="cx-pic" class="pic1">
+            <div id="cx-content" class="content1">
+                <div id="cx-left" class="p-left1">
+                    <a href="http://study.163.com/course/introduction/1003683028.htm" target="_blank" data-index="225*390">
+                        <div class="x-zoomImg">
+                            <img class="j-custom-img" id="auto-id-1488939246277" src="images/sh1.png" data-originsrc="http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://edu-image.nosdn.127.net/089a33ff-fae5-40ff-a5bc-1c8b4c13b1ea.jpg?imageView&amp;quality=100_225x390x1x95.png" width="225" height="390" alt="把产品用正确的方式卖出去">
+                        </div>
+                    </a>
+                </div>
+                <div id="cx-right" class="p-right1">
+                    <div id="cx-r1" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003715028.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/sh2.jpg" width="225" height="142" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        厉害了！用手机拍出高逼格的照片</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">十点课堂</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r2" class="right1">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003502003.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/sh3.jpg" width="225" height="142" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        "简单靠谱"学简谱</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">乐理计划</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r3" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003461005.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/sh4.png" width="225" height="142" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        电影自习室Pro</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">新片场</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r4" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003607049.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/sh5.jpg" width="225" height="142" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        10天教会你个人理财</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">格物财经</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r5" class="right1">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003502003.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/sh6.jpg" width="225" height="142" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        榕哥烙科：每天一点小科学</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">榕哥烙科</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r6" class="right1">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003502003.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/sh7.png" width="225" height="142" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        零基础轻松搞定Photoshop</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">人民攻摄</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="cx-sild" class="sild1"></div>
+        </div>
+    </div>
+    <div id="yuyan">
+        <div id="zy-top" class="box-top">
+            <h2>实用语言</h2>
+            <a href="http://study.163.com/category/language-and-study-abroad" target="_blank"><span>更多</span>
+                <span class="icn"></span>
+            </a>
+        </div>
+        <div id="zy-pic" class="pic2">
+            <div id="zy-content" class="content2">
+                <!--<div id="bg-left" class="p-left"></div>-->
+                <div id="zy-right" class="p-right2">
+                    <div id="zy-r1" class="right2">
+                        <a href="http://study.163.com/series/61005.htm" target="_blank" data-index="470*184">
+                            <div class="x-zoomImg">
+                                <img class="j-custom-img" id="auto-id-1488939246241" src="images/yy1.png" data-originsrc="http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://nos.netease.com/edu-image/331FBE6CFB5660DBFD8AA0C1EEB93E03.png?imageView&amp;thumbnail=470y184&amp;quality=100_470x184x1x95.png" width="470" height="184" alt="世界500强企业级Office办公教程">
+                            </div>
+                        </a>
+                    </div>
+                    <div id="zy-r2" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003718001.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/yy2.png" width="225" height="146" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        大家的日语1（上）
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">Derry1995</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="zy-r3" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003646005.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/yy3.jpg" width="225" height="146" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        如何拥有优美的英式口音
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">网易公开课</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="zy-r4" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003619010.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/yy4.jpg" width="225" height="146" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        新版标准日本初级（上册）精讲
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">秋叶旅人KS</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="zy-r5" class="right2">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003546013.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/yy5.png" width="225" height="146" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        和外教学意大利语发音
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">言多多</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="zy-r6" class="right2">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1201019.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/yy6.jpg" width="225" height="146" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        John Huu教英语之美语发音
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">johnhuu老师</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="zy-r7" class="right2">
+                        <a target="_blank" class="wrap" href="/course/introduction/1003546013.htm" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003546013-1486279845641-0" src="images/yy7.jpg" width="225" height="146" alt="OmniFocus for Mac" data-originsrc="http://edu-image.nosdn.127.net/d5b29da5-1ddb-4553-8b87-456b3f5ebcb3.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003546013-1486279845641-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="OmniFocus for Mac">
+                                        赵铁夫讲单词：科学牢记过万单词
+                                    </div>
+                                </div>
+                                <div id="j-custom-recommend-1003546013-1486279845641-0">
+                                    <div class="orgName f-fs0 f-thide">赵铁夫English</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="zy-sild" class="sild2"></div>
+        </div>
+    </div>
+    <div id="qinzi">
+        <div id="cx-top" class="box-top">
+            <h2>亲子启蒙</h2>
+            <a href="http://study.163.com/category/kid" target="_blank"><span>更多</span>
+                <span class="icn"></span>
+            </a>
+        </div>
+        <div id="cx-pic" class="pic1">
+            <div id="cx-content" class="content1">
+                <div id="cx-left" class="p-left1">
+                    <a href="http://study.163.com/course/introduction/1003683028.htm" target="_blank" data-index="225*390">
+                        <div class="x-zoomImg">
+                            <img class="j-custom-img" id="auto-id-1488939246277" src="images/qz1.png"http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://edu-image.nosdn.127.net/089a33ff-fae5-40ff-a5bc-1c8b4c13b1ea.jpg?imageView&amp;quality=100_225x390x1x95.png" width="225" height="390" alt="把产品用正确的方式卖出去">
+                        </div>
+                    </a>
+                </div>
+                <div id="cx-right" class="p-right1">
+                    <div id="cx-r1" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003679010.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/qz2.jpg" width="225" height="142" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        一点植物学</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">玉米实验室</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r2" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003706013.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/qz3.jpg" width="225" height="142" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        孕期最容易出现的问题集锦</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">iBaby孕育</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r3" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003606059.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/qz4.png" width="225" height="142" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        儿童情商培养</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">初心客厅心理疏导</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r4" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003706004.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/qz5.jpg" width="225" height="142" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        咪蒙的育儿之道（试看版）</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">壓力山大</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r5" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003494007.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/qz6.png" width="225" height="142" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        100天搞定英语启蒙</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">奇卡奇卡一起演英语</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="cx-r6" class="right1">
+                        <a target="_blank" class="wrap" href="http://study.163.com/course/introduction/1003666013.htm#/courseDetail" data-index="225*142">
+                            <div class="img">
+                                <div class="pic f-pr">
+                                    <img class="imgPic" id="j-custom-img-1003502003-1486279858712-0" src="images/qz7.png" width="225" height="142" alt="销售就是搞定客户" data-originsrc="http://edu-image.nosdn.127.net/d9283598-8a8f-4b8b-b960-1757b0f329ef.jpg?imageView&amp;quality=100">
+                                </div>
+                                <div class="tit">
+                                    <div class="f-thide" id="j-custom-name-1003502003-1486279858712-0" src="http://s.stu.126.net/res/images/lazyLoadPic.png" alt="销售就是搞定客户">
+                                        中小学安全教育系列动画</div>
+                                </div>
+                                <div id="j-custom-recommend-1003502003-1486279858712-0">
+                                    <div class="orgName f-fs0 f-thide">京师慧通</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="cx-sild" class="sild1"></div>
+        </div>
+    </div>
+    <div id="mingshi">
+        <div id="mingshi-top" class="box-top">
+            <h2>名师大咖秀</h2>
+            <a href="http://study.163.com/about/aboutus.htm#/about?aboutType=7" target="_blank"><span>申请加入</span>
+                <span class="icn"></span>
+            </a>
+        </div>
+        <div id="mingshi-pic">
+            <div id="mingshi-content" class="content">
+                <!--<div id="mingshi-left" class="p-left"></div>-->
+                <div id="mingshi-right" class="">
+                    <div id="mingshi-r1" class="right">
+                        <a href="http://mooc.study.163.com/u/zjuwwq#/c" target="_blank" class="head" data-index="1" data-name="魏文庆" title="魏文庆">
+                            <img class="" id="" src="images/ms1.png" width="240" height="240" alt="teacher.name">
+                            <h3 class="f-pa f-fcf info f-thide">
+                                <span class="name">魏文庆</span><span class="title">网易前端技术总监</span>
+                            </h3>
+                        </a>
+                    </div>
+                    <div id="mingshi-r2" class="right">
+                        <a href="http://mooc.study.163.com/u/ykt1446738560203#/c" target="_blank" class="head" data-index="2" data-name="李金城" title="李金城">
+                            <img class="" id="" src="http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://nos.netease.com/edu-image/22ee6acd-c6dd-4907-b9b9-d1fb4057c685.jpg?imageView&amp;quality=100_240x240x1x95.png" width="240" height="240" alt="teacher.name">
+                            <h3 class="f-pa f-fcf info f-thide">
+                                <span class="name">李金城</span><span class="title">著名混音师</span>
+                            </h3>
+                        </a>
+                    </div>
+                    <div id="mingshi-r3" class="right">
+                        <a href="http://study.163.com/u/NBoffice" target="_blank" class="head" data-index="3" data-name="秦川" title="秦川">
+                            <img class="" id="" src="http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://nos.netease.com/edu-image/A62CD1A520950FA01DCBDDAECA48A82F.jpg?imageView&amp;thumbnail=240y240&amp;quality=100_240x240x1x95.png" width="240" height="240" alt="teacher.name">
+                            <h3 class="f-pa f-fcf info f-thide">
+                                <span class="name">秦川</span><span class="title">领津科技技术总监</span>
+                            </h3>
+                        </a>
+                    </div>
+                    <div id="mingshi-r4" class="right">
+                        <a href="http://study.163.com/u/ibmresearchchina" target="_blank" class="head" data-index="4" data-name="王青" title="王青">
+                            <img class="" id="" src="http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://edu-image.nosdn.127.net/8cd855fe-1284-4497-ba87-d815d553e013.jpg?imageView&amp;quality=100_240x240x1x95.png" width="240" height="240" alt="teacher.name">
+                            <h3 class="f-pa f-fcf info f-thide">
+                                <span class="name">王青</span><span class="title">IBM资深研究员</span>
+                            </h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="mingshi-sild" class="sild"></div>
+        </div>
+    </div>
+    <div id="guanggao">
+        <div id="g-left">
+            <a href="http://www.kaola.com/activity/detail/15809.shtml?tag=8402bc9532198571fe45c908e9d83712&__da_4cdd4fa8_56a9b372a5433c81#zid_7367114651" target="_blank"> <img src="images/gg1.jpg"></a>
+        </div>
+        <div id="g-right">
+            <a href="http://study.163.com/client/download.htm" target="_blank" > <img src="images/gg2.jpg"></a>
+        </div>
+    </div>
+</div>
+<div id="hezuo">
+    <div id="hz-top">
+        <h2 style="width: 500px;float: left">合作机构</h2>
+        <a href="http://study.163.com/about/aboutus.htm#/about?aboutType=7" target="_blank" style="float: right;line-height: 85px"><span>申请加入</span>
+            <span class="icn"></span>
+        </a>
+    </div>
+    <hr>
+    <div id="hz-bottom">
+        <div id="hz-text">
+            <ul id="hz-list">
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/sikana" id="auto-id-1488939245963" data-index="机构" data-name="Sikana教育基金会">Sikana教育基金会</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/tudashi" id="auto-id-1488939245965" data-index="机构" data-name="图大狮">图大狮</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/3575790365" id="auto-id-1488939245967" data-index="机构" data-name="HRBar专业人力资源培训">HRBar专业人力资源培训</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/ykt1433407149712" id="auto-id-1488939245969" data-index="机构" data-name="Boolan">Boolan</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/katoclass" id="auto-id-1488939245971" data-index="机构" data-name="咔图摄影教育中心">咔图摄影教育中心</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/zhiling" id="auto-id-1488939245973" data-index="机构" data-name="上海职领网络科技有限公司">上海职领网络科技有限公司</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/zylpbyxy" id="auto-id-1488939245975" data-index="机构" data-name="百映学苑">百映学苑</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/6094766153" id="auto-id-1488939245977" data-index="机构" data-name="多学多用">多学多用</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/ykt1423723160651" id="auto-id-1488939245979" data-index="机构" data-name="紫荆教育">紫荆教育</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/admway" id="auto-id-1488939245981" data-index="机构" data-name="达梦教育">达梦教育</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/yingsheng" id="auto-id-1488939245983" data-index="机构" data-name="英盛网">英盛网</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/ruanko" id="auto-id-1488939245985" data-index="机构" data-name="软酷网">软酷网</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/koclaedu" id="auto-id-1488939245987" data-index="机构" data-name="考拉超级课堂">考拉超级课堂</a>
+                </li>
+                <li class="hz-item">
+                    <a target="_blank" hidefocus="true" class="f-fc9 j-link link" href="http://study.163.com/u/funsjphoto" id="auto-id-1488939245989" data-index="机构" data-name="FUN视觉摄影及后期课堂">FUN视觉摄影及后期课堂</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div id="inner">
+        <div id="f-left">
+            <div id="f-logo"></div>
+            <p id="f-text">
+                网易公司(163.com)旗下实用技能学习平台。与优秀讲师、专业机构、院校合作，为您提供海量优质课程，以及创新的在线学习体验，帮助您获得全新的个人发展和能力提升。
+            </p>
+            <div id="share">
+                <p id="guanzhu" style="float: left;">关注我们:</p>
+                <a href="" id="weibo"></a>
+                <a href="" id="renren"></a>
+                <a href="" id="yixin"></a>
+                <a href="" id="weixin"></a>
+            </div>
+            <div id="copy">
+                ©<span>1997-2017</span>
+                网易公司 版权所有
+            </div>
+        </div>
+        <div id="f-right">
+            <div style="height:20px">
+                <ul>
+                    <li>
+                        <a href="">关于我们</a>
+                    </li>
+                    <li>
+                        <a href="">联系我们</a>
+                    </li>
+                    <li>
+                        <a href="">帮助中心</a>
+                    </li>
+                    <li><a href="">内容招募</a>
+                    </li>
+                    <li>
+                        <a href="">意见反馈</a>
+                    </li>
+                    <li>
+                        <a href="">企业服务</a>
+                    </li>
+                    <li>
+                        <a href="">中国大学MOOC</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="mobile">
+                <div><p>移动APP：</p>
+                    <div id="mlogo1" class="mlogo"><a href=""></a></div>
+                    <div id="mlogo2" class="mlogo"><a href=""></a></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
